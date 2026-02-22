@@ -17,4 +17,3 @@ if ($LASTEXITCODE -eq 0) {
 } else {
     Write-Error "Error al restaurar la base de datos."
 }
-

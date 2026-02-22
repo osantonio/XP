@@ -1,0 +1,26 @@
+services:
+  # Servicio de base de datos PostgreSQL
+  db:
+    # Imagen oficial de PostgreSQL (versión y variante Alpine)
+    image: postgres:17-alpine3.23
+    # Nombre fijo del contenedor
+    container_name: CONTAINER_XP
+    # Política de reinicio para mantener el servicio activo
+    restart: unless-stopped
+    environment:
+      # Nombre de la base de datos inicial
+      POSTGRES_DB: XP_DB
+      # Usuario administrador de la base de datos
+      POSTGRES_USER: osantonio
+      # Contraseña del usuario administrador
+      POSTGRES_PASSWORD: galapago
+    ports:
+      # Exponer el puerto de PostgreSQL al host
+      - "5432:5432"
+    volumes:
+      # Persistencia de datos en un volumen nombrado
+      - pgdata_XP:/var/lib/postgresql/data
+
+volumes:
+  # Volumen persistente para los datos de PostgreSQL
+  pgdata_XP:

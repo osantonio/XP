@@ -18,4 +18,3 @@ if ($LASTEXITCODE -eq 0) {
 } else {
     Write-Error "Error al crear el dump de la base de datos."
 }
-
