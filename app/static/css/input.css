@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --radio-borde: 0.375rem;
+  --fondo: #ffffff;
+  --fondo-superficie: #f8fafc;
+  --texto: #0f172a;
+  --texto-suave: #64748b;
+  --borde: #e2e8f0;
+  --primario: #0f766e;
+  --primario-suave: #14b8a6;
+  --ver: #2563eb;
+  --crear: #22c55e;
+}
+
+.dark {
+  color-scheme: dark;
+  --fondo: #1B2432;
+  --fondo-superficie: #242F3F;
+  --texto: #E5EDF5;
+  --texto-suave: #9CAEC6;
+  --borde: #2E3A4C;
+  --primario: #22c55e;
+  --primario-suave: #4ade80;
+  --ver: #3b82f6;
+  --crear: #4ade80;
+}
+
+@theme {
+  --font-sans: "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --radius: var(--radio-borde);
+  --color-fondo: var(--fondo);
+  --color-fondo-superficie: var(--fondo-superficie);
+  --color-texto: var(--texto);
+  --color-texto-suave: var(--texto-suave);
+  --color-borde: var(--borde);
+  --color-primario: var(--primario);
+  --color-primario-suave: var(--primario-suave);
+  --color-ver: var(--ver);
+  --color-crear: var(--crear);
+}

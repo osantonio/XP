@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 0 auto;">
+    <h1 style="margin-bottom: 2rem;">{{ action }} Empresa</h1>
+
+    <div class="glass-card">
+        <form method="POST">
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">NIT</label>
+                <input type="text" name="nit" class="form-control" placeholder="830012345-6" required>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Nombre Comercial</label>
+                <input type="text" name="nombre" class="form-control" placeholder="Nombre de la empresa" required>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                <label style="color: var(--text-muted);">¿Habilitado en RUP?</label>
+                <input type="checkbox" name="rup_habilitado"
+                    style="width: 1.2rem; height: 1.2rem; accent-color: var(--primary);">
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Capacidad
+                    Financiera</label>
+                <select name="capacidad_financiera" class="form-control">
+                    <option value="S">Suficiente (S)</option>
+                    <option value="M">Media (M)</option>
+                    <option value="T">Total (T)</option>
+                </select>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="btn-primary" style="flex: 1;">Guardar Empresa</button>
+                <a href="{{ url_for('empresas.listar') }}"
+                    style="flex: 1; text-align: center; text-decoration: none; padding-top: 0.5rem; color: var(--text-muted);">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

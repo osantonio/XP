@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="space-y-6 max-w-3xl mx-auto">
+    <div class="space-y-2">
+        <h1 class="text-2xl font-semibold tracking-tight">
+            Nuevo código UNSPSC
+        </h1>
+        <p class="text-sm text-texto-suave">
+            Registra un nuevo código UNSPSC para utilizarlo en los contratos.
+        </p>
+    </div>
+
+    <div class="rounded-xl border border-borde/60 bg-fondo-superficie p-5 sm:p-6">
+        <form method="POST" class="space-y-6">
+            <div class="space-y-1">
+                <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                    Código UNSPSC
+                </label>
+                <input type="text"
+                       name="codigo"
+                       required
+                       placeholder="86101700"
+                       class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+            </div>
+
+            <div class="space-y-1">
+                <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                    Descripción
+                </label>
+                <textarea name="descripcion"
+                          rows="3"
+                          placeholder="Descripción breve del código UNSPSC..."
+                          class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario"></textarea>
+            </div>
+
+            <div class="flex flex-col gap-3 sm:flex-row">
+                <button type="submit"
+                        class="inline-flex flex-1 items-center justify-center rounded-full bg-primario px-4 py-2 text-sm font-medium text-white hover:bg-primario-suave transition-colors">
+                    Guardar código
+                </button>
+                <a href="{{ url_for('unspsc.listar') }}"
+                   class="inline-flex flex-1 items-center justify-center rounded-full border border-borde/60 px-4 py-2 text-sm font-medium text-texto-suave hover:text-texto hover:bg-fondo-superficie transition-colors text-center">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+

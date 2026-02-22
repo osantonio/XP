@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="space-y-6 max-w-3xl mx-auto">
+    <div class="space-y-2">
+        <h1 class="text-2xl font-semibold tracking-tight">
+            Nuevo contrato de experiencia
+        </h1>
+        <p class="text-sm text-texto-suave">
+            Registra un contrato asociado a esta empresa para calcular su experiencia contractual.
+        </p>
+    </div>
+
+    <div class="rounded-xl border border-borde/60 bg-fondo-superficie p-5 sm:p-6">
+        <form method="POST" class="space-y-6">
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-1">
+                    <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                        Número SECOP
+                    </label>
+                    <input type="text"
+                           name="numero_secop"
+                           required
+                           placeholder="LP-001-2023"
+                           class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                        Estado
+                    </label>
+                    <select name="estado"
+                            class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                        <option value="Liquidado">Liquidado</option>
+                        <option value="Ejecución">En Ejecución</option>
+                        <option value="Terminado">Terminado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="space-y-1">
+                <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                    Objeto contractual
+                </label>
+                <textarea name="objeto"
+                          rows="3"
+                          required
+                          placeholder="Descripción clara del contrato..."
+                          class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario"></textarea>
+            </div>
+
+            <div class="space-y-1">
+                <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                    Códigos UNSPSC (separados por punto y coma)
+                </label>
+                <input type="text"
+                       name="unspsc"
+                       required
+                       placeholder="72103000;72103300;80101500"
+                       class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                <p class="mt-1 text-xs text-texto-suave">
+                    Ejemplo: 72103000; 72200000
+                </p>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-1">
+                    <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                        Valor (COP)
+                    </label>
+                    <input type="number"
+                           name="valor"
+                           required
+                           placeholder="500000000"
+                           class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                </div>
+
+                <div class="flex items-center gap-3 sm:mt-6">
+                    <label class="text-sm text-texto-suave">
+                        ¿Registrado en RUP?
+                    </label>
+                    <input type="checkbox"
+                           name="registrado_rup"
+                           class="h-4 w-4 rounded border-borde/60 text-primario focus:ring-primario">
+                </div>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-1">
+                    <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                        Fecha adjudicación
+                    </label>
+                    <input type="date"
+                           name="fecha_adjudicacion"
+                           required
+                           class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                        Fecha fin ejecución
+                    </label>
+                    <input type="date"
+                           name="fecha_ejecucion_fin"
+                           class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-3 sm:flex-row">
+                <button type="submit"
+                        class="inline-flex flex-1 items-center justify-center rounded-full bg-primario px-4 py-2 text-sm font-medium text-white hover:bg-primario-suave transition-colors">
+                    Registrar experiencia
+                </button>
+                <a href="{{ url_for('empresas.ver', id=empresa_id) }}"
+                   class="inline-flex flex-1 items-center justify-center rounded-full border border-borde/60 px-4 py-2 text-sm font-medium text-texto-suave hover:text-texto hover:bg-fondo-superficie/60 transition-colors">
+                    Volver
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

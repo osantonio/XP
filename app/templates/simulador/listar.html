@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="space-y-6">
+    <div class="space-y-2">
+        <h1 class="text-2xl font-semibold tracking-tight">
+            Simulador de consorcios
+        </h1>
+        <p class="text-sm text-texto-suave max-w-2xl">
+            Define los parámetros de la licitación para encontrar combinaciones de empresas que cumplan
+            con la experiencia requerida.
+        </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.9fr)]">
+        <div class="space-y-4">
+            <div class="rounded-xl border border-borde/60 bg-fondo-superficie p-5 sm:p-6">
+                <h2 class="text-sm font-semibold mb-4">
+                    Parámetros de licitación
+                </h2>
+                <form method="POST" class="space-y-4">
+                    <div class="space-y-1">
+                        <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                            Experiencia requerida (Millones COP)
+                        </label>
+                        <input type="number"
+                               name="min_ex"
+                               required
+                               placeholder="500"
+                               class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                            Contratos Requeridos
+                        </label>
+                        <input type="number"
+                               name="max_contratos"
+                               required
+                               min="1"
+                               value="1"
+                               class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                            Código UNSPSC (filtro)
+                        </label>
+                        <input type="text"
+                               name="unspsc"
+                               required
+                               placeholder="72103"
+                               class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                        <p class="mt-1 text-xs text-texto-suave">
+                            Prefijo de códigos de experiencia requerida.
+                        </p>
+                    </div>
+
+                    <button type="submit"
+                            class="inline-flex w-full items-center justify-center rounded-full bg-primario px-4 py-2 text-sm font-medium text-white hover:bg-primario-suave transition-colors">
+                        Generar combinaciones
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            {% if consorcios %}
+            <h2 class="text-sm font-semibold text-texto-suave">
+                Mejores 3 consorcios viables
+            </h2>
+
+            {% for consorcio in consorcios %}
+            <article class="rounded-xl border border-borde/60 bg-fondo-superficie p-5 sm:p-6 border-l-4 border-l-primario/70">
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-3">
+                    <h3 class="text-sm font-semibold text-primario">
+                        Consorcio {{ loop.index }}
+                    </h3>
+                    <p class="text-xs text-texto-suave">
+                        Cobertura UNSPSC:
+                        <span class="font-semibold text-texto">
+                            {{ consorcio.cobertura }}
+                        </span>
+                        códigos
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs sm:text-sm text-left">
+                        <thead class="border-b border-borde/60 text-[11px] uppercase tracking-wide text-texto-suave">
+                            <tr>
+                                <th class="py-2 pr-4">Integrante</th>
+                                <th class="py-2 pr-4">NIT</th>
+                                <th class="py-2 pr-4 text-right whitespace-nowrap">Valor aportado (COP)</th>
+                                <th class="py-2 text-right whitespace-nowrap">% Participación</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-borde/40">
+                            {% for p in consorcio.miembros %}
+                            <tr>
+                                <td class="py-2 pr-4 align-top">
+                                    {{ p.empresa.nombre }}
+                                </td>
+                                <td class="py-2 pr-4 align-top whitespace-nowrap text-xs text-texto-suave">
+                                    {{ p.empresa.nit }}
+                                </td>
+                                <td class="py-2 pr-4 align-top whitespace-nowrap text-right">
+                                    ${{ "{:,.0f}".format(p.valor_aportado) }}
+                                </td>
+                                <td class="py-2 align-top whitespace-nowrap text-right text-xs">
+                                    {{ "{:.1f}%".format((p.valor_aportado / consorcio.total_valor) * 100) }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr class="border-t border-borde/60">
+                                <td colspan="2" class="py-2 pr-4 text-xs font-semibold">
+                                    Total consorcio
+                                </td>
+                                <td class="py-2 pr-4 text-right font-semibold text-primario">
+                                    ${{ "{:,.0f}".format(consorcio.total_valor) }}
+                                </td>
+                                <td class="py-2 text-right text-xs">
+                                    100%
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <p class="mt-3 text-xs text-texto-suave">
+                    Acreditando un total de {{ consorcio.total_contratos }} contratos de experiencia específica.
+                </p>
+            </article>
+            {% endfor %}
+
+            {% elif request.method == 'POST' %}
+            <div class="rounded-xl border border-borde/60 bg-fondo-superficie p-4 text-center text-sm text-red-400">
+                No se encontraron combinaciones que cumplan con los requisitos mínimos de experiencia.
+            </div>
+            {% else %}
+            <div class="rounded-xl border border-dashed border-borde/60 bg-fondo-superficie/40 p-4 text-center text-sm text-texto-suave">
+                Ingrese los parámetros de la licitación para simular el consorcio óptimo.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

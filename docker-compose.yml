@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:17-alpine3.23
+    container_name: CONTAINER_XP
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: XP_DB
+      POSTGRES_USER: osantonio
+      POSTGRES_PASSWORD: galapago
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_XP:/var/lib/postgresql/data
+
+volumes:
+  pgdata_XP:

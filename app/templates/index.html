@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="flex flex-col gap-6">
+    <p class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-fondo-superficie text-texto-suave border border-borde/60 w-fit">
+        <span class="h-1.5 w-1.5 rounded-full bg-primario-suave animate-pulse"></span>
+        SECOP PRO · Configuración inicial del entorno
+    </p>
+    <h1 class="text-3xl font-semibold leading-tight sm:text-4xl">
+        Configura tu entorno de análisis de <span class="text-primario-suave">empresas y contratos</span>.
+    </h1>
+    <p class="max-w-2xl text-sm text-texto-suave">
+        Esta página te guía para validar que Tailwind, el tema claro/oscuro y la base de datos están funcionando
+        correctamente antes de empezar a cargar empresas, contratos y simulaciones.
+    </p>
+
+    <div class="grid gap-4 sm:grid-cols-3">
+        <div class="rounded-lg border border-borde/60 bg-fondo-superficie p-4 flex flex-col gap-2">
+            <span class="text-xs font-semibold uppercase tracking-wide text-texto-suave">Paso 1</span>
+            <h2 class="text-sm font-semibold">Verificar estilos</h2>
+            <p class="text-xs text-texto-suave">
+                Cambia entre modo claro y oscuro con el botón del navbar. El fondo, textos y tarjetas deben adaptarse
+                suavemente.
+            </p>
+        </div>
+        <div class="rounded-lg border border-borde/60 bg-fondo-superficie p-4 flex flex-col gap-2">
+            <span class="text-xs font-semibold uppercase tracking-wide text-texto-suave">Paso 2</span>
+            <h2 class="text-sm font-semibold">Revisar datos de empresas</h2>
+            <p class="text-xs text-texto-suave">
+                Accede a la sección de <span class="font-medium">Empresas</span> desde el menú superior para validar la
+                paginación y la tabla.
+            </p>
+        </div>
+        <div class="rounded-lg border border-borde/60 bg-fondo-superficie p-4 flex flex-col gap-2">
+            <span class="text-xs font-semibold uppercase tracking-wide text-texto-suave">Paso 3</span>
+            <h2 class="text-sm font-semibold">Probar simulador</h2>
+            <p class="text-xs text-texto-suave">
+                Usa el <span class="font-medium">Simulador</span> para generar consorcios y comprobar que las consultas
+                a la base de datos responden bien.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="mt-16 grid gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.4fr)]">
+    <div class="space-y-4">
+        <h2 class="text-lg font-semibold">Estado del entorno</h2>
+        <p class="text-sm text-texto-suave">
+            Esta sección está pensada para crecer con más checks de salud del sistema: conexiones a base de datos,
+            migraciones pendientes, variables de entorno, etc. Añade aquí cualquier indicador que necesites revisar
+            al iniciar el proyecto.
+        </p>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+            <div class="rounded-lg border border-borde/60 bg-fondo-superficie p-4 flex items-start gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-primario-suave"></div>
+                <div class="space-y-1">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-texto-suave">
+                        Base de datos
+                    </p>
+                    <p class="text-sm">
+                        Asegúrate de que el contenedor de PostgreSQL está levantado y accesible desde la app.
+                    </p>
+                </div>
+            </div>
+            <div class="rounded-lg border border-borde/60 bg-fondo-superficie p-4 flex items-start gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-primario-suave"></div>
+                <div class="space-y-1">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-texto-suave">
+                        Tailwind
+                    </p>
+                    <p class="text-sm">
+                        Ejecuta <span class="font-mono text-xs">npm run dev:css</span> y comprueba que los cambios de
+                        estilo se aplican sin recargar la app.
+                    </p>
+                </div>
+            </div>
+            <div class="rounded-lg border border-borde/60 bg-fondo-superficie p-4 flex items-start gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-primario-suave"></div>
+                <div class="space-y-1">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-texto-suave">
+                        Modo oscuro
+                    </p>
+                    <p class="text-sm">
+                        El tema se guarda en <span class="font-mono text-xs">localStorage</span> y se respeta la
+                        preferencia del sistema.
+                    </p>
+                </div>
+            </div>
+            <div class="rounded-lg border border-borde/60 bg-fondo-superficie p-4 flex items-start gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-primario-suave"></div>
+                <div class="space-y-1">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-texto-suave">
+                        Datos de ejemplo
+                    </p>
+                    <p class="text-sm">
+                        Carga algunas empresas y contratos para tener un entorno de pruebas realista desde el primer
+                        día.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <aside class="space-y-4">
+        <h2 class="text-lg font-semibold">Guía rápida</h2>
+        <div class="rounded-lg border border-borde/60 bg-fondo-superficie p-4 space-y-3 text-sm text-texto-suave">
+            <p>
+                Esta página está pensada para superar el alto del viewport y obligarte a hacer scroll, de manera que
+                puedas validar el comportamiento del navbar <span class="font-mono">sticky</span> y el
+                contraste en diferentes secciones.
+            </p>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Desplázate hacia abajo para comprobar el sticky del navbar.</li>
+                <li>Alterna entre modo claro/oscuro y revisa textos y bordes.</li>
+                <li>Visita las secciones de Empresas y Simulador desde la navegación.</li>
+            </ul>
+        </div>
+    </aside>
+</section>
+
+<section class="mt-20 mb-24 space-y-3">
+    <h2 class="text-sm font-semibold text-texto-suave uppercase tracking-wide">
+        Próximos pasos recomendados
+    </h2>
+    <div class="rounded-lg border border-dashed border-borde/60 bg-fondo-superficie/40 p-4 text-sm text-texto-suave">
+        Utiliza esta sección como checklist vivo para la configuración del proyecto: pipelines de despliegue, backups
+        de base de datos, entornos de staging, etc. Puedes ir marcando tareas aquí o enlazar a herramientas externas
+        de seguimiento.
+    </div>
+</section>
+{% endblock %}

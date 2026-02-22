@@ -1,0 +1,7 @@
+quart
+sqlmodel
+asyncpg
+sqlalchemy[asyncio]
+python-dotenv
+alembic
+psycopg2-binary

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="space-y-6">
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div class="space-y-3">
+            <div>
+                <h1 class="text-2xl font-semibold tracking-tight">
+                    Códigos UNSPSC
+                </h1>
+                <p class="mt-1 text-sm text-texto-suave">
+                    Catálogo de códigos UNSPSC disponibles para asociar a contratos.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <a href="{{ url_for('unspsc.crear') }}"
+               class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-primario text-white hover:bg-primario-suave transition-colors">
+                <span class="text-base leading-none">+</span>
+                <span>Nuevo código</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="overflow-hidden rounded-xl border border-borde/60 bg-fondo-superficie shadow-sm">
+        <table class="w-full text-sm text-left">
+            <thead class="border-b border-borde/60 text-xs uppercase tracking-wide text-texto-suave bg-fondo-superficie/80">
+                <tr>
+                    <th class="px-4 py-3">Código</th>
+                    <th class="px-4 py-3">Descripción</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-borde/40">
+                {% for u in codigos %}
+                <tr class="hover:bg-fondo-superficie/70 transition-colors">
+                    <td class="px-4 py-2 align-top whitespace-nowrap text-xs text-texto-suave">
+                        {{ u.codigo }}
+                    </td>
+                    <td class="px-4 py-2 align-top text-sm">
+                        {{ u.descripcion or "-" }}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="2" class="px-4 py-4 text-center text-xs text-texto-suave">
+                        No hay códigos UNSPSC registrados.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
+

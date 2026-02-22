@@ -1,0 +1,20 @@
+<nav class="sticky top-0 inset-x-0 z-50 h-12 bg-fondo-superficie/80 backdrop-blur border-b border-borde/60">
+    <div class="flex items-center justify-between h-full px-6 mx-auto w-full max-w-6xl">
+        <a href="{{ url_for('base.index') }}" class="inline-flex items-center gap-2">
+            <img src="{{ url_for('static', filename='svg/logo.svg') }}" alt="SECOP PRO" class="h-7 w-auto dark:invert">
+        </a>
+        <div class="flex items-center gap-4">
+            <a href="{{ url_for('empresas.listar') }}" class="nav-link text-sm font-medium text-texto-suave hover:text-texto">
+                Empresas
+            </a>
+            <a href="{{ url_for('simulador.simular_consorcio') }}" class="nav-link text-sm font-medium text-texto-suave hover:text-texto">
+                Simulador
+            </a>
+            <a href="{{ url_for('unspsc.listar') }}" class="nav-link text-sm font-medium text-texto-suave hover:text-texto">
+                Códigos UNSPSC
+            </a>
+            {% include "componentes/tema.html" %}
+        </div>
+    </div>
+</nav>
+

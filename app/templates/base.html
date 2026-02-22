@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XP - Gestión de Empresas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body class="min-h-screen bg-fondo text-texto font-sans antialiased">
+    {% include "componentes/navbar.html" %}
+
+    <main class="w-full max-w-6xl px-8 pt-6 pb-10 mx-auto">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
