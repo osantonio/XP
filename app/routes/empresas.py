@@ -32,8 +32,8 @@ async def crear():
             nueva = Empresa(
                 nit=form.get("nit"),
                 nombre=form.get("nombre"),
-                rup_habilitado=form.get("rup_habilitado") == "on",
-                capacidad_financiera=form.get("capacidad_financiera")
+                rup_habilitado=form.get("rup_habilitado") == "si",
+                capacidad_financiera=0
             )
             session.add(nueva)
             await session.commit()

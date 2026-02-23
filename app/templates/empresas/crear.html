@@ -1,43 +1,66 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div style="max-width: 600px; margin: 0 auto;">
-    <h1 style="margin-bottom: 2rem;">{{ action }} Empresa</h1>
+<section class="space-y-6 w-full">
+    <div class="space-y-2">
+        <h1 class="text-2xl font-semibold tracking-tight">
+            {{ action }} Empresa
+        </h1>
+        <p class="text-sm text-texto-suave">
+            Completa la información básica para registrar la empresa en el sistema.
+        </p>
+    </div>
 
-    <div class="glass-card">
-        <form method="POST">
-            <div style="margin-bottom: 1.5rem;">
-                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">NIT</label>
-                <input type="text" name="nit" class="form-control" placeholder="830012345-6" required>
+    <div class="rounded-xl border border-borde/60 bg-fondo-superficie p-5 sm:p-6">
+        <form method="POST" class="space-y-6">
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-1">
+                    <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                        NIT
+                    </label>
+                    <input type="text"
+                           name="nit"
+                           required
+                           placeholder="830012345-6"
+                           class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                        Nombre comercial
+                    </label>
+                    <input type="text"
+                           name="nombre"
+                           required
+                           placeholder="Nombre de la empresa"
+                           class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                </div>
             </div>
 
-            <div style="margin-bottom: 1.5rem;">
-                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Nombre Comercial</label>
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre de la empresa" required>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-1">
+                    <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                        ¿RUP HABILITADO?
+                    </label>
+                    <select name="rup_habilitado"
+                            class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                        <option value="si">Sí</option>
+                        <option value="no" selected>No</option>
+                    </select>
+                </div>
             </div>
 
-            <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                <label style="color: var(--text-muted);">¿Habilitado en RUP?</label>
-                <input type="checkbox" name="rup_habilitado"
-                    style="width: 1.2rem; height: 1.2rem; accent-color: var(--primary);">
-            </div>
-
-            <div style="margin-bottom: 2rem;">
-                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted);">Capacidad
-                    Financiera</label>
-                <select name="capacidad_financiera" class="form-control">
-                    <option value="S">Suficiente (S)</option>
-                    <option value="M">Media (M)</option>
-                    <option value="T">Total (T)</option>
-                </select>
-            </div>
-
-            <div style="display: flex; gap: 1rem;">
-                <button type="submit" class="btn-primary" style="flex: 1;">Guardar Empresa</button>
+            <div class="flex flex-col gap-3 sm:flex-row">
+                <button type="submit"
+                        class="inline-flex flex-1 items-center justify-center rounded-full bg-primario px-4 py-2 text-sm font-medium text-white hover:bg-primario-suave transition-colors">
+                    Guardar empresa
+                </button>
                 <a href="{{ url_for('empresas.listar') }}"
-                    style="flex: 1; text-align: center; text-decoration: none; padding-top: 0.5rem; color: var(--text-muted);">Cancelar</a>
+                   class="inline-flex flex-1 items-center justify-center rounded-full border border-borde/60 px-4 py-2 text-sm font-medium text-texto-suave hover:text-texto hover:bg-fondo-superficie/60 transition-colors text-center">
+                    Cancelar
+                </a>
             </div>
         </form>
     </div>
-</div>
+</section>
 {% endblock %}

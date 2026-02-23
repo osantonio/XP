@@ -1,0 +1,7 @@
+BEGIN;
+
+ALTER TABLE empresa
+    ALTER COLUMN capacidad_financiera TYPE BIGINT
+    USING capacidad_financiera::BIGINT;
+
+COMMIT;

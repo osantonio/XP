@@ -9,7 +9,7 @@ class Empresa(SQLModel, table=True):
     nit: str = Field(index=True, unique=True)
     nombre: str
     rup_habilitado: bool = False
-    capacidad_financiera: str  # S (Suficiente), M (Media), T (Total) - p.ej.
+    capacidad_financiera: int = Field(default=0, sa_column=Column(BigInteger))
     
     contratos: List["Contrato"] = Relationship(back_populates="empresa")
     contactos: List["Contacto"] = Relationship(back_populates="empresa")

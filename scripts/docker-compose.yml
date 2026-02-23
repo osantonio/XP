@@ -1,3 +1,5 @@
+name: XP
+
 services:
   # Servicio de base de datos PostgreSQL
   db:
