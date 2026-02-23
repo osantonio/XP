@@ -15,6 +15,7 @@
   --primario-suave: #14b8a6;
   --ver: #2563eb;
   --crear: #22c55e;
+  --editar: #f59e0b;
 }
 
 .dark {
@@ -28,6 +29,7 @@
   --primario-suave: #4ade80;
   --ver: #3b82f6;
   --crear: #4ade80;
+  --editar: #fbbf24;
 }
 
 @theme {
@@ -43,4 +45,5 @@
   --color-primario-suave: var(--primario-suave);
   --color-ver: var(--ver);
   --color-crear: var(--crear);
+  --color-editar: var(--editar);
 }

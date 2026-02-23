@@ -12,7 +12,7 @@ async def crear(id: int):
         if request.method == "POST":
             form = await request.form
             unspsc_str = form.get("unspsc", "")
-            codigos = [code.strip() for code in unspsc_str.split(";") if code.strip()]
+            codigos = [code.strip() for code in unspsc_str.split() if code.strip()]
 
             nuevo = Contrato(
                 empresa_id=id,

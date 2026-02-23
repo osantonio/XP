@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="space-y-6 max-w-6xl mx-auto">
+    <div class="space-y-2">
+        <h1 class="text-2xl font-semibold tracking-tight">
+            Código UNSPSC {{ codigo.codigo }}
+        </h1>
+        <p class="text-sm text-texto-suave">
+            Detalle del código UNSPSC registrado.
+        </p>
+    </div>
+
+    <div class="rounded-xl border border-borde/60 bg-fondo-superficie p-5 sm:p-6 space-y-4">
+        <div class="space-y-1">
+            <span class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                Código
+            </span>
+            <div class="text-sm font-semibold">
+                {{ codigo.codigo }}
+            </div>
+        </div>
+        <div class="space-y-1">
+            <span class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
+                Descripción
+            </span>
+            <div class="text-sm">
+                {{ codigo.descripcion or "-" }}
+            </div>
+        </div>
+    </div>
+
+    <div class="rounded-xl border border-borde/60 bg-fondo-superficie p-5 sm:p-6">
+        <div class="flex items-center justify-between">
+            <h2 class="text-sm font-semibold">
+                Contratos asociados
+            </h2>
+            <span class="text-xs text-texto-suave">
+                {{ contratos | length }} registros
+            </span>
+        </div>
+
+        <div class="mt-4 overflow-hidden rounded-lg border border-borde/60">
+            <table class="w-full text-sm text-left">
+                <thead class="border-b border-borde/60 text-xs uppercase tracking-wide text-texto-suave bg-fondo-superficie/80">
+                    <tr>
+                        <th class="px-4 py-3">SECOP</th>
+                        <th class="px-4 py-3">Estado</th>
+                        <th class="px-4 py-3 text-right">Valor</th>
+                        <th class="px-4 py-3">Empresa</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-borde/40">
+                    {% for contrato in contratos %}
+                    <tr class="hover:bg-fondo-superficie/70 transition-colors">
+                        <td class="px-4 py-2 align-top whitespace-nowrap text-xs text-texto-suave">
+                            {{ contrato.numero_secop }}
+                        </td>
+                        <td class="px-4 py-2 align-top text-xs text-texto-suave">
+                            {{ contrato.estado }}
+                        </td>
+                        <td class="px-4 py-2 align-top whitespace-nowrap text-sm text-right">
+                            ${{ "{:,.0f}".format(contrato.valor) }} COP
+                        </td>
+                        <td class="px-4 py-2 align-top text-sm">
+                            {{ contrato.empresa.nombre if contrato.empresa else "-" }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="px-4 py-4 text-center text-xs text-texto-suave">
+                            No hay contratos asociados a este código.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-3 sm:flex-row">
+        <a href="{{ url_for('unspsc.editar', codigo=codigo.codigo) }}"
+           class="inline-flex flex-1 items-center justify-center rounded-full bg-primario px-4 py-2 text-sm font-medium text-white hover:bg-primario-suave transition-colors">
+            Editar código
+        </a>
+        <a href="{{ url_for('unspsc.listar') }}"
+           class="inline-flex flex-1 items-center justify-center rounded-full border border-borde/60 px-4 py-2 text-sm font-medium text-texto-suave hover:text-texto hover:bg-fondo-superficie/60 transition-colors">
+            Volver
+        </a>
+    </div>
+</section>
+{% endblock %}

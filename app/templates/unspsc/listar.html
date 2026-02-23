@@ -29,6 +29,7 @@
                 <tr>
                     <th class="px-4 py-3">Código</th>
                     <th class="px-4 py-3">Descripción</th>
+                    <th class="px-4 py-3 text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-borde/40">
@@ -40,10 +41,28 @@
                     <td class="px-4 py-2 align-top text-sm">
                         {{ u.descripcion or "-" }}
                     </td>
+                    <td class="px-4 py-2 align-top text-center">
+                        <div class="inline-flex items-center justify-center gap-3">
+                            <a href="{{ url_for('unspsc.ver', codigo=u.codigo) }}"
+                               class="inline-flex items-center justify-center text-xs font-medium"
+                               title="Ver código">
+                                <img src="{{ url_for('static', filename='svg/view.svg') }}"
+                                     alt="Ver código"
+                                     class="h-4 w-4">
+                            </a>
+                            <a href="{{ url_for('unspsc.editar', codigo=u.codigo) }}"
+                               class="inline-flex items-center justify-center text-xs font-medium"
+                               title="Editar código">
+                                <img src="{{ url_for('static', filename='svg/edit.svg') }}"
+                                     alt="Editar código"
+                                     class="h-4 w-4">
+                            </a>
+                        </div>
+                    </td>
                 </tr>
                 {% else %}
                 <tr>
-                    <td colspan="2" class="px-4 py-4 text-center text-xs text-texto-suave">
+                    <td colspan="3" class="px-4 py-4 text-center text-xs text-texto-suave">
                         No hay códigos UNSPSC registrados.
                     </td>
                 </tr>

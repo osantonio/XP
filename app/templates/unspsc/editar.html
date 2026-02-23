@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="space-y-6 max-w-6xl mx-auto">
+<section class="space-y-6 max-w-3xl mx-auto">
     <div class="space-y-2">
         <h1 class="text-2xl font-semibold tracking-tight">
-            Nuevo código UNSPSC
+            Editar código UNSPSC
         </h1>
         <p class="text-sm text-texto-suave">
-            Registra un nuevo código UNSPSC para utilizarlo en los contratos.
+            Actualiza la descripción asociada al código seleccionado.
         </p>
     </div>
 
@@ -17,11 +17,9 @@
                 <label class="block text-xs font-medium uppercase tracking-wide text-texto-suave">
                     Código UNSPSC
                 </label>
-                <input type="text"
-                       name="codigo"
-                       required
-                       placeholder="86101700"
-                       class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">
+                <div class="w-full rounded-md border border-dashed border-borde/60 bg-fondo px-3 py-2 text-sm text-texto">
+                    {{ codigo.codigo }}
+                </div>
             </div>
 
             <div class="space-y-1">
@@ -31,16 +29,16 @@
                 <textarea name="descripcion"
                           rows="3"
                           placeholder="Descripción breve del código UNSPSC..."
-                          class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario"></textarea>
+                          class="w-full rounded-md border border-borde/60 bg-fondo px-3 py-2 text-sm text-texto placeholder:text-texto-suave focus:outline-none focus:ring-2 focus:ring-primario/60 focus:border-primario">{{ codigo.descripcion or "" }}</textarea>
             </div>
 
             <div class="flex flex-col gap-3 sm:flex-row">
                 <button type="submit"
                         class="inline-flex flex-1 items-center justify-center rounded-full bg-primario px-4 py-2 text-sm font-medium text-white hover:bg-primario-suave transition-colors">
-                    Guardar código
+                    Guardar cambios
                 </button>
-                <a href="{{ url_for('unspsc.listar') }}"
-                   class="inline-flex flex-1 items-center justify-center rounded-full border border-borde/60 px-4 py-2 text-sm font-medium text-texto-suave hover:text-texto hover:bg-fondo-superficie transition-colors text-center">
+                <a href="{{ url_for('unspsc.ver', codigo=codigo.codigo) }}"
+                   class="inline-flex flex-1 items-center justify-center rounded-full border border-borde/60 px-4 py-2 text-sm font-medium text-texto-suave hover:text-texto hover:bg-fondo-superficie/60 transition-colors">
                     Cancelar
                 </a>
             </div>
@@ -48,4 +46,3 @@
     </div>
 </section>
 {% endblock %}
-
